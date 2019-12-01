@@ -210,6 +210,7 @@ struct ALU
 
     // Bit manipulations
     template<typename I> static void sbext( I* instr) { instr->v_dst = 1 & ( instr->v_src1 >> shamt_v_src2<typename I::RegisterUInt>( instr)); }
+    template<typename I> static void sbinv(I* instr) {instr->v_dst = v_src1 ^ (1 << shamt_v_src2<typename I::RegisterUInt>(instr));}
 
     template<typename I, typename T>
     static void clmul( I* instr)

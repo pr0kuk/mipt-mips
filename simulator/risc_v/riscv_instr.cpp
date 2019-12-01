@@ -84,6 +84,7 @@ template<typename I> auto execute_orn = ALU::orn<I>;
 template<typename I> auto execute_sbext = ALU::sbext<I>;
 template<typename I> auto execute_pack = ALU::pack<I, typename I::RegisterUInt>;
 template<typename I> auto execute_xnor = ALU::xnor<I>;
+template<typename I> auto execute_sbinv = ALU::sbinv<I>;
 template<typename I> auto execute_sro = ALU::sro<I>;
 template<typename I> auto execute_bfp = ALU::bit_field_place<I>;
 template<typename I> auto execute_grev = ALU::grev<I>;
@@ -312,6 +313,7 @@ static const std::vector<RISCVTableEntry<I>> cmd_desc =
     {'B', instr_rol,      execute_rol<I>,  OUT_ARITHM,  ' ', Imm::NO,    Src1::RS1,  Src2::RS2,  Dst::RD,   0, 32 | 64      },
     {'B', instr_clmul,    execute_clmul<I>, OUT_ARITHM, ' ', Imm::NO,    Src1::RS1,  Src2::RS2,  Dst::RD,   0, 32 | 64      },
     {'B', instr_gorc,     execute_gorc<I>, OUT_ARITHM,  ' ', Imm::NO,    Src1::RS1,  Src2::RS2,  Dst::RD,   0, 32 | 64      },
+    {'B', instr_sbinv,    execute_sbinv<I>, OUT_ARITHM, ' ', Imm::NO,    Src1::RS1,  Src2::RS2,  Dst::RD,   0, 32 | 64      },
 };
 
 template<typename I>
