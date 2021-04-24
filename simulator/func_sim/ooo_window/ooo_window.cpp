@@ -1,5 +1,4 @@
-#include "ooo_window.h"
-
+#include <func_sim/ooo_window/ooo_window.h>
 template <typename FuncInstr> 
 OOOWindow<FuncInstr>::OOOWindow(unsigned long number) {
     size = number;

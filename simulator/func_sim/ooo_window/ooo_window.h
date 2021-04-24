@@ -1,5 +1,5 @@
 #include <iostream>
-#include <queue>
+#include <vector>
 template <typename FuncInstr> 
 class OOOWindow {
     private:
