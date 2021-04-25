@@ -1,5 +1,5 @@
 #include <func_sim/ooo_window/ooo_window.h>
-template <typename FuncInstr> 
+/*template <typename FuncInstr> 
 OOOWindow<FuncInstr>::OOOWindow(unsigned long number) {
     size = number;
     number_of_independent_instructions = 0;
@@ -9,7 +9,7 @@ OOOWindow<FuncInstr>::OOOWindow(unsigned long number) {
 
 template <typename FuncInstr> 
 OOOWindow<FuncInstr>::~OOOWindow() {
-    std::cout << this->get_avg_independent_instruction() << std::endl;
+    std::cout << static_cast<double>(number_of_independent_instructions/number_of_updates) << std::endl;
 }
 
 template <typename FuncInstr> 
@@ -17,12 +17,15 @@ void OOOWindow<FuncInstr>::write_instruction(FuncInstr instruction) {
     if (OOOQueue.size() == size)
         OOOQueue.pop_back();
     OOOQueue.insert(OOOQueue.begin(), instruction);
-    if (OOOQueue.size() != size)
-        return;
+    if (OOOQueue.size() == size)
+        this->get_avg_independent_instruction();
+}
+
+template <typename FuncInstr> 
+double OOOWindow<FuncInstr>::get_avg_independent_instruction() {
     int count = 0;
-    for (int i = 0; i < size; i++) {
-        for (int j = 0; j < i; j++) {
-            int temp = 0;
+    for (int i = 0, count =  0; i < size; i++) {
+        for (int j = 0, temp = 0; j < i; j++) {
             if (is_zero(OOOQueue[i]) && is_zero(OOOQueue[j])) {
                 count += 2;
                 break;
@@ -36,12 +39,8 @@ void OOOWindow<FuncInstr>::write_instruction(FuncInstr instruction) {
     }
     number_of_independent_instructions += count;
     number_of_updates++;
-}
-
-template <typename FuncInstr> 
-double OOOWindow<FuncInstr>::get_avg_independent_instruction() {
     return static_cast<double>(number_of_independent_instructions/number_of_updates);
-}
+}*/
 
 
 
