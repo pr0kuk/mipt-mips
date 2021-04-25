@@ -26,10 +26,8 @@ class OOOWindow {
                         if (it3 == it1)
                             continue;
                         //flag = 0;
-                        int temp = 0;
                         for (int k = 0; k < 3; k++) {
                             if (((*it3).get_src_num(k) == (*it1).get_dst_num()) && !((*it3).get_src_num(k).is_zero()) && !((*it1).get_dst_num().is_zero())) {
-                                temp++;
                                 it3 = templist.erase(it3);
                                 it3--;
                                 //flag = 1;
@@ -52,7 +50,7 @@ class OOOWindow {
                 return 0;
             return (static_cast<double>(number_of_independent_instructions))/(static_cast<double>(number_of_updates));
         }
-        //~OOOWindow() {
-        //    std::cout << this->get_avg_independent_instructions() << std::endl;
-        //}
+        ~OOOWindow() {
+            std::cout << this->get_avg_independent_instructions() << std::endl;
+        }
 };
