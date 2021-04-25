@@ -4,8 +4,8 @@ template <typename FuncInstr>
 class OOOWindow {
     private:
         unsigned long size;
-        double number_of_independent_instructions;
-        double number_of_updates;
+        unsigned long long number_of_independent_instructions;
+        unsigned long long number_of_updates;
         std::list <FuncInstr> OOOQueue;
     public:
         OOOWindow(unsigned long number) {
@@ -50,7 +50,7 @@ class OOOWindow {
         double get_avg_independent_instructions() {
             if (number_of_updates == 0)
                 return 0;
-            return static_cast<double>(number_of_independent_instructions/number_of_updates);
+            return (static_cast<double>(number_of_independent_instructions))/(static_cast<double>(number_of_updates));
         }
         //~OOOWindow() {
         //    std::cout << this->get_avg_independent_instructions() << std::endl;
