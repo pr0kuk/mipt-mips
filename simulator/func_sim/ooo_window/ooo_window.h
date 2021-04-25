@@ -19,25 +19,18 @@ class OOOWindow {
             if (static_cast<unsigned long>(OOOQueue.size()) == size) {
                 OOOQueue.pop_back();
                 OOOQueue.push_front(instruction);
-                //int flag = 0;
                 std::list <FuncInstr> templist = OOOQueue;
                 for (auto it1 = templist.begin(); it1 != templist.end(); ++it1) {
                     for (auto it3 = it1; it3 != templist.end(); ++it3) {
                         if (it3 == it1)
                             continue;
-                        //flag = 0;
                         for (int k = 0; k < 3; k++) {
                             if (((*it3).get_src_num(k) == (*it1).get_dst_num()) && !((*it3).get_src_num(k).is_zero()) && !((*it1).get_dst_num().is_zero())) {
                                 it3 = templist.erase(it3);
                                 it3--;
-                                //flag = 1;
                             }   
                         }
                     }
-                    /*if (flag) {
-                        it1 = templist.erase(it1);
-                        it1--;
-                    }*/
                 }
                 number_of_independent_instructions += templist.size();
                 number_of_updates++;
