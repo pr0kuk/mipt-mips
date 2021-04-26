@@ -23,13 +23,13 @@ class OOOWindow {
         }
 
         void update_number_of_independent_instructions() {
-            int count = 0, function_depend = 0;
-            for (auto it1 = OOOQueue.begin(), end = OOOQueue.end(); it1 != end; ++it1, function_depend = 0) {
-                for (auto it3 = OOOQueue.begin(); it3 != it1 && !function_depend; ++it3)
-                    for (int k = 0; k < 3 && !function_depend; k++)
+            int count = 0, instruction_independent = 1;
+            for (auto it1 = OOOQueue.begin(), end = OOOQueue.end(); it1 != end; ++it1, instruction_independent = 1) {
+                for (auto it3 = OOOQueue.begin(); it3 != it1 && instruction_independent; ++it3)
+                    for (int k = 0; k < 3 && instruction_independent; k++)
                         if (((*it1).get_src_num(k) == (*it3).get_dst_num()) && !((*it3).get_dst_num().is_zero()))
-                            function_depend = 1;
-                if (!function_depend)
+                            instruction_independent = 0;
+                if (instruction_independent)
                     count++;
             }
             number_of_independent_instructions += count;
